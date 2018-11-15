@@ -45,34 +45,33 @@ x = x[idx,:]
 y = y[idx]
 
 # Split the data into training/testing sets
-diabetes_X_train = x[:n_train,:] #
-diabetes_X_test = x[n_train:, :]  #
+disease_X_train = x[:n_train,:] #
+disease_X_test = x[n_train:, :]  #
 
-print('train X:',diabetes_X_train.shape)
-print('test X:',diabetes_X_test.shape)
+print('train X:',disease_X_train.shape)
+print('test X:',disease_X_test.shape)
 
 # Split the targets into training/testing sets
-diabetes_y_train = y[:n_train]
-diabetes_y_test = y[n_train:]
+disease_y_train = y[:n_train]
+disease_y_test = y[n_train:]
 
-print('train target:',diabetes_y_train.shape)
-print('test target:',diabetes_y_test.shape)
-#print(diabetes_X_train.shape)
-#print(diabetes_y_train.shape)
+print('train target:',disease_y_train.shape)
+print('test target:',disease_y_test.shape)
+
 regr = linear_model.LinearRegression()
-regr.fit(diabetes_X_train, diabetes_y_train)
+regr.fit(diabetes_X_train, disease_y_train)
 
 
-diabetes_y_pred = regr.predict(diabetes_X_test)
-#print(diabetes_y_pred)
+disease_y_pred = regr.predict(disease_X_test)
+
 
 # The coefficients
 print('Coefficients: \n', regr.coef_)
 # The mean squared error
 print("Mean squared error: %.2f"
-      % mean_squared_error(diabetes_y_test, diabetes_y_pred))
+      % mean_squared_error(disease_y_test, diabetes_y_pred))
 # Explained variance score: 1 is perfect prediction
-print('Variance score: %.2f' % r2_score(diabetes_y_test, diabetes_y_pred))
+print('Variance score: %.2f' % r2_score(disease_y_test, disease_y_pred))
 
 data = pd.read_csv('dataset_features.csv')
 
